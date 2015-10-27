@@ -1,32 +1,6 @@
 <%= link_to "All Movies", new_movie_path %><br>
 
 <h2>Submit a Movie</h2>
-<%= form_for @movie do |f| %>
-  <div>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :release_date %><br>
-    <%= f.dare_field :release_date %>
-  </div>
-  <div>
-    <%= f.label :director %><br>
-    <%= f.text_field :director %>
-  </div>
-  <div>
-    <%= f.label :runtime_in_minutes %><br>
-    <%= f.number_field :runtime_in_minutes %>
-  </div>
-  <div>
-    <%= f.label :poster_image_url %><br>
-    <%= f.text_field :poster_image_url %>
-  </div>
-  <div>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="button">
-    <%= f.submit "Submit" %>
-  </div>
-<% end %>
+<div class="form">
+  <%= render 'form' %>
+</div>
