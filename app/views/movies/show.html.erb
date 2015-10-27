@@ -5,6 +5,7 @@
 <h3><%= @movie.release_date %></h3>
 <h4>Director: <%= @movie.director %> | Runtime: <%= @movie.runtime_in_minutes %> mins</h4>
 <p><%= @movie.description %></p>
+<p>Average user rating: <%= @movie.review_average %></p>
 
 <h3>Reviews of <em><%= @movie.title %></em></h3>
 <% if current_user %>
