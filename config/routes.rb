@@ -1,5 +1,7 @@
 RottenMangoes::Application.routes.draw do
   
+  get "sessions/new"
+  get "sessions/create"
   get "users/new"
   get "users/create"
   resources :movies
