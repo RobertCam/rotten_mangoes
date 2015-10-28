@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
   has_many :reviews
+  mount_uploader :poster, PosterUploader
 
   validates :title, presence: true
   validates :director, presence: true
@@ -11,9 +12,9 @@ class Movie < ActiveRecord::Base
 
   def review_average
     if reviews.size == 0
-      "This movie has no reviews"
+      "This movie has no ratings"
     else
-      "#{reviews.sum(:rating_out_of_ten)/reviews.size}/10"  
+      "#{reviews.sum(:rating_out_of_ten)/reviews.size}/10"    
     end
   end
 
@@ -25,6 +26,5 @@ class Movie < ActiveRecord::Base
       errors.add(:release_date, "You cannot review a movie that hasn't been released yet.") if release_date > Date.today
     end
   end
-
 
 end

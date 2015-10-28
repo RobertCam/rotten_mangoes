@@ -34,8 +34,9 @@ end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use ActiveModel has_secure_password
-
+gem 'carrierwave'
+gem "rmagick"
+gem 'pry'
 # Use unicorn as the app server
 # gem 'unicorn'
 
