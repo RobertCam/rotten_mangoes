@@ -1,4 +1,4 @@
-<%= form_for @movie do |f| %>
+<%= form_for @movie, :html => {:multipart => true} do |f| %>
   <div class="form-field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -18,6 +18,11 @@
   <div class="form-field">
     <%= f.label :poster_image_url %><br>
     <%= f.text_field :poster_image_url %>
+  </div>
+  <!-- poster uploader -->
+  <div class="form-field">
+  <%= f.label :poster, "Upload poster" %><br>
+  <%= f.file_field :poster %>
   </div>
   <div class="form-field">
     <%= f.label :description %><br>
