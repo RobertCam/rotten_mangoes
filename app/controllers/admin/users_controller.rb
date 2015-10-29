@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
   def index
     if current_user.admin
       @admin = User.find(session[:user_id])
-      @users = User.all
+      @users = User.order("id").page(params[:page]).per(10)
     end
   end
 
@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
    @user = User.new(admin_user_params) 
     if @user.save
       redirect_to movies_path, notice: "User created, #{@user.firstname}!"
-      session[:user_id] = @user.id
+      # session[:user_id] = @user.id
     else
       render :new
     end

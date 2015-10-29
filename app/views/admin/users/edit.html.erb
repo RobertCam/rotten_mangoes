@@ -10,29 +10,31 @@
       </ul>
     </div>
   <% end %>
-  <div>
+<div class="from-group">
+  <div class="form-control">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
-  <div>
+  <div class="form-control">
     <%= f.label :firstname, "First Name" %>
     <%= f.text_field :firstname %>
   </div>
-  <div>
+  <div class="form-control">
     <%= f.label :lastname, "Last Name" %>
     <%= f.text_field :lastname %>
   </div>
-  <div>
+  <div class="form-control">
     <%= f.label :password %>
     <%= f.password_field :password %>    
   </div>
-  <div>
+  <div class="form-control">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div>
+  <div class="form-control">
     <%= f.label :admin, "Make Admin" %>
     <%= f.check_box :admin %>
   </div>
-  <div><%= f.submit "Submit" %></div>
+  <div class="btn btn-submit"><%= f.submit "Submit" %></div>
+</div>
 <% end %>

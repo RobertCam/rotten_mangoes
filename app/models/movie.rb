@@ -18,6 +18,17 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def self.search(query)
+    where("title like ?, %#{query}")
+    # if duration.nil?
+    #   self.all
+    # else
+    #   v = duration.split(',')
+    #   start_time = v[0]
+    #   end_time = v[1]
+    #   self.where("movies.runtime_in_minutes >= ? AND movies.runtime_in_minutes <= ?", start_time, end_time )
+    # end
+  end
 
   protected
 

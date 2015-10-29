@@ -1,13 +1,42 @@
 <h1>Movies</h1>
 <%= link_to "Submit a Movie!", new_movie_path %>
+    <div class="form-group">
+      <%= form_tag movies_path, method: :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: "search movies", html: {class: "form-control"} %>
+      <%= select_tag :duration, options_for_select([
+        ['Under 90 minutes', '0,89'],
+        ['Between 90 and 120 minutes', '90,120'],
+        ['Over 120 minutes', '120,500'],
+        ], params[:duration]) %>
+      <%= submit_tag "Search", :title => nil, :class => "btn-sm btn-default" %> 
+    </div>
+  <% end %>
 <hr>
-<% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
-  <%= image_tag movie.poster_url(:thumb).to_s %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= formatted_date(movie.release_date) %></h3>
-  <h4>Director: <%= movie.director %> | Runtime: <%= movie.runtime_in_minutes %> mins. </h4>
-  <p><%= movie.description %></p>
-  <hr>
-<% end %>
-  
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+      <% @movies.each do |movie| %>
+      <div class="row">
+        <div class="col-sm-3">
+          <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+        </div>
+        <div class="col-xs-2">
+          <%= image_tag movie.poster_url(:thumb).to_s %>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h2><%= link_to movie.title, movie_path(movie) %></h2>
+            <h3><%= formatted_date(movie.release_date) %></h3>
+            <h4>Director: <%= movie.director %> | Runtime: <%= movie.runtime_in_minutes %> mins. </h4>
+            <p><%= movie.description %></p>
+          </div>
+        </div>
+        <hr>
+        <% end %>
+        <%= paginate @movies %>
+      </div>
+    </div>
+  </div>
+</div>
