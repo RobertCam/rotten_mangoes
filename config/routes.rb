@@ -5,6 +5,10 @@ RottenMangoes::Application.routes.draw do
   namespace :admin do
     resources :users
   end
+
+  namespace :my do
+    resource :profile, only: [:edit, :update, :show]
+  end
   
   resources :movies do
     resources :reviews, only: [:new, :create]

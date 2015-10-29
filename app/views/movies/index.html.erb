@@ -3,11 +3,6 @@
     <div class="form-group">
       <%= form_tag movies_path, method: :get do %>
       <%= text_field_tag :search, params[:search], placeholder: "search movies", html: {class: "form-control"} %>
-      <%= select_tag :duration, options_for_select([
-        ['Under 90 minutes', '0,89'],
-        ['Between 90 and 120 minutes', '90,120'],
-        ['Over 120 minutes', '120,500'],
-        ], params[:duration]) %>
       <%= submit_tag "Search", :title => nil, :class => "btn-sm btn-default" %> 
     </div>
   <% end %>
@@ -35,7 +30,7 @@
         </div>
         <hr>
         <% end %>
-        <%= paginate @movies %>
+      
       </div>
     </div>
   </div>
