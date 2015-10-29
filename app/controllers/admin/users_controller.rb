@@ -38,8 +38,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      redirect_to admin_user_path(@user)
+    if @user.update_attributes(admin_user_params)
+      redirect_to admin_user_path(@user), notice: "User updated"
     else
       render :edit
     end
