@@ -2,55 +2,55 @@ class Admin::UsersController < ApplicationController
   before_filter :admin?
 
   def admin?
-    return if session[:admin_user_id]
     unless current_user && current_user.admin
       redirect_to movies_path
     end
   end
 
   def index
-    if session[:admin_user_id]
-      session[:user_id] = session[:admin_user_id]
-      session[:admin_user_id] = nil
+    if current_user.admin
+      @admin = User.find(session[:user_id])
+      @users = User.all
     end
-    @admin = User.find(session[:user_id])
   end
 
   def show
     @user = User.find(params[:id])
   end
 
-   def new
+  def new
     @user = User.new
   end
 
   def edit
     @user = User.find(params[:id])
-    @user.save
+  end
+
+  def create
+   @user = User.new(admin_user_params) 
+    if @user.save
+      redirect_to movies_path, notice: "User created, #{@user.firstname}!"
+      session[:user_id] = @user.id
+    else
+      render :new
+    end
   end
 
   def update
     @user = User.find(params[:id])
-
-    if @user.update_attributes(post_params)
+    if @user.update_attributes(user_params)
       redirect_to admin_user_path(@user)
     else
       render :edit
     end
   end
 
-  def create
-  end
 
   def destroy
-    @user = User.find(params[:id])
-    flash.now[:alert] = "Successfully Deleted #{@user.full_name}"
-
+    @user = User.find_by_id(params[:id])
     @user.destroy
-    redirect_to admin_users_path
-
+    redirect_to admin_users_path, notice: 'User deleted!'
   end
-
 
   def become_user
     session[:admin_user_id] = current_user.id
@@ -62,8 +62,8 @@ class Admin::UsersController < ApplicationController
 
   protected
 
-  def post_params
-    params.require(:user).permit(:email, :firstname, :lastname, :admin)
+  def admin_user_params
+    params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation, :admin)
   end
 
 

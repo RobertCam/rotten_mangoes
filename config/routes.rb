@@ -1,16 +1,9 @@
 RottenMangoes::Application.routes.draw do
   
-  get "admin/user"
-  get "reviews/new"
-  get "reviews/create"
-  get "sessions/new"
-  get "sessions/create"
-  get "users/new"
-  get "users/create"
+  
 
   namespace :admin do
     resources :users
-    get '/users/become/:id', to: 'users#become'
   end
   
   resources :movies do
