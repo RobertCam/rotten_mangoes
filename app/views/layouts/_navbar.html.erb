@@ -16,12 +16,23 @@
                 <li><a href="#about">Profile</a></li>
                 <li><% if current_user %>
                         <%= link_to "Log out", session_path("current"), method: :delete %>
-                    <% else %>
-                        <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-                    <% end %></li>
+                    <% end %>
+                <li><% if !current_user %>    
+                        <%= link_to "Log In", new_session_path %>  
+                    <% end %>
+                </li>
+                <li><% if !current_user %>
+                        <%= link_to "Sign Up", new_user_path %>
+                    <% end %>
+                </li>    
                 <li><% if current_user && current_user.admin? %>
-                    <%= link_to "Admin Settings", admin_users_path %>
-                <% end %></li>
+                        <%= link_to "Admin Settings", admin_users_path %>
+                    <% end %>
+                </li>
+                <li><% if current_user %>
+                        <%= link_to "Back to admin", admin_login_back_to_admin_path %>
+                    <% end %>
+                </li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

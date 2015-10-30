@@ -31,6 +31,9 @@
         <div class="actions">
         <%= link_to "Edit", edit_admin_user_path(user) %>
         <%= link_to "Delete", admin_user_path(user), method: :delete, confirm: "Are you sure?" %>
+        <%= form_for [:admin, user], method: "switch_to_user" do |f| %>
+        <button class="btn-sm btn-success">switch to user</button>
+        <% end %>
         </div>
       </td>
     </tr>
