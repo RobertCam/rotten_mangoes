@@ -3,6 +3,12 @@ class ReviewsController < ApplicationController
   before_filter :load_movie
   before_filter :restrict_access
 
+  def index
+      @reviews = current_user.reviews.favourite
+    else
+      render :show
+  end
+
   def new
     @review = @movie.reviews.build
   end

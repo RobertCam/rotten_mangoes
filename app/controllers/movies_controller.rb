@@ -2,7 +2,6 @@ class MoviesController < ApplicationController
   def index
     if params[:search]
       @movies = Movie.search(params[:search]).order("created_at DESC")
-      puts "LOOK HERE #{@movies.first}" 
     else
       @movies = Movie.order("title").page(params[:page]).per(10)
     end
