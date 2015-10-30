@@ -4,6 +4,8 @@ RottenMangoes::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    post '/users/:id', to: 'users#switch_to_user', as: 'switch_to_user'
+    get '/re-log', to: 'users#return_to_admin', as: 'login_back_to_admin'
   end
 
   namespace :my do

@@ -1,37 +1,55 @@
 <%= form_for @movie, :html => {:multipart => true} do |f| %>
-  <div class="form-field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <form class="form-horizontal">
+  <div class="form-group">
+    <%= f.label :title, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
   </div>
-  <div class="form-field">
-    <%= f.label :release_date %><br>
-    <%= f.date_field :release_date %>
+  <div class="form-group">
+    <%= f.label :release_date, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.date_field :release_date, class: "form-control" %>
+    </div>
   </div>
-  <div class="form-field">
-    <%= f.label :director %><br>
-    <%= f.text_field :director %>
+  <div class="form-group">
+    <%= f.label :director, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.text_field :director, class: "form-control" %>
+    </div>
   </div>
-  <div class="form-field">
-    <%= f.label :runtime_in_minutes %><br>
-    <%= f.number_field :runtime_in_minutes %>
+  <div class="form-group">
+    <%= f.label :runtime_in_minutes, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.number_field :runtime_in_minutes, class: "form-control" %>
+    </div>
   </div>
-  <div class="form-field">
-    <%= f.label :poster_image_url %><br>
-    <%= f.text_field :poster_image_url %>
+  <div class="form-group">
+    <%= f.label :poster_image_url, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.text_field :poster_image_url, class: "form-control" %>
+    </div>
   </div>
-  <!-- poster uploader -->
-  <div class="form-field">
-  <%= f.label :poster, "Upload poster" %><br>
-  <%= f.file_field :poster %>
+  <div class="form-group">
+    <%= f.label :description, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
   </div>
-  <div class="form-field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :poster, class: "control-label" %>
+    <div class="col-sm-2">
+      <%= f.file_field :poster %>
+    </div>
   </div>
-  <div class="button">
-    <%= f.submit "Submit" %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
   </div>
+</form>
 <% end %>
+
 
 <%= form_for @movie do |f| %>
   <% if @movie.errors.any? %>

@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_filter :admin?
+  before_filter :admin?, except: [:return_to_admin]
 
   def admin?
     unless current_user && current_user.admin
@@ -44,19 +44,23 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-
   def destroy
     @user = User.find_by_id(params[:id])
     @user.destroy
     redirect_to admin_users_path, notice: 'User deleted!'
   end
 
-  def become_user
-    session[:admin_user_id] = current_user.id
+  def switch_to_user
+    session[:admin_user_id] = current_user.id 
     session[:user_id] = params[:id]
-    @temp_user_name = User.find(params[:id]).full_name
-    redirect_to root_url
-    flash[:alert] = "Temporarily logged in as #{@temp_user_name}"
+    redirect_to movies_path, notice: "Temporarily logged in as #{current_user.firstname}"
+  end
+
+  def return_to_admin
+    current_user_reset
+    session[:user_id] = session[:admin_user_id]
+    session[:admin_user_id] = nil
+    redirect_to admin_users_path
   end
 
   protected

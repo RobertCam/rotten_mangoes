@@ -1,37 +1,25 @@
-<%= form_for [:admin, @user], url: admin_user_path do |f| %>
-  <% if @user.errors.any? %>
-    <div>
-      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
-      <ul>
-        <% @user.errors.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+<div class="form-inline">
+  <div class="field">
+    <%= f.label :email, class: "col-sm-1 control-label" %>
+    <%= f.text_field :email, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :firstname, "First Name" %>
-    <%= f.text_field :firstname %>
+  <div class="field">
+    <%= f.label :firstname, "First Name", class: "col-sm-1 control-label" %>
+    <%= f.text_field :firstname, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :lastname, "Last Name" %>
-    <%= f.text_field :lastname %>
+  <div class="field">
+    <%= f.label :lastname, "Last Name", class: "col-sm-1 control-label" %>
+    <%= f.text_field :lastname, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>    
+  <div class="field">
+    <%= f.label :password, class: "col-sm-1 control-label" %>
+    <%= f.password_field :password, class: "form-control" %>    
   </div>
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+  <div class="field">
+    <%= f.label :password_confirmation, class: "col-sm-1 control-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :admin, "Make Admin" %>
+  <div class="form-group">
+    <%= f.label :admin, "Admin", class: "col" %>
     <%= f.check_box :admin %>
-  </div>
-  <div><%= f.submit "Submit" %></div>
-<% end %>
+</div>
